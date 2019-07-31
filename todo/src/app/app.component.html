@@ -1,0 +1,41 @@
+<div class="container text-lg-center card" style="width: 50rem;">
+  <div style="text-align:center">
+    <h1>
+      To Do List!
+    </h1>
+  </div>
+  <h2>Here are all your tasks to do: </h2>
+  <br><br>
+  <div class="tasks text-lg-center">
+    <ul style="list-style: none;">
+      <li *ngFor="let task of tasks">
+        <h2 (click)="taskClicked(task)">{{task.title}}</h2>
+      </li>
+    </ul>
+  </div>
+
+  <div class="tasksDescription">
+      <table class="table">
+        <thead>
+          <tr>
+            <th Title="col">Title</th>
+            <th Description="col">Description</th>
+            <th Done="col">Done</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><input class="form-control" type="text" [(ngModel)]="selectedTask.title"/></th>
+            <td><input class="form-control" type="text" [(ngModel)]="selectedTask.desc"/></td>
+            <td><input type="checkbox" [(ngModel)]="selectedTask.done"/></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+  <div class="buttons">
+    <button class="btn btn-primary m-2" *ngIf="selectedTask.id != -1" (click)="updateTask()"> Update </button>
+    <button class="btn btn-success m-2" (click)="createTask()"> Add </button>
+    <button class="btn btn-danger m-2"  *ngIf="selectedTask.id != -1" (click)="deleteTask()"> Delete </button>
+  </div>
+</div>
